@@ -85,3 +85,10 @@ doesn't shift as the script draws it. Change that number if the example tasks ch
 
 Inter and JetBrains Mono, both under the SIL Open Font License, copied from the app so the
 two match.
+
+## Icons
+
+Lucide (lucide.dev, ISC License, Copyright (c) Lucide Contributors), the same set and version
+as the app (lucide-static 1.68.0). Each is pasted into the page as an inline SVG, so nothing
+loads from another site. To add one, copy its shapes from the icon's SVG at lucide.dev rather
+than drawing a new one.
