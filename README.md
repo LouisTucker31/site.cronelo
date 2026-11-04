@@ -1,6 +1,6 @@
-# Workspace website
+# Cronelo website
 
-The marketing site for Workspace. It explains the app and links to it; the app itself lives
+The marketing site for Cronelo. It explains the app and links to it; the app itself lives
 at its own address and is a separate project.
 
 Plain HTML, CSS and JavaScript with no build step and no third-party files: fonts, images and

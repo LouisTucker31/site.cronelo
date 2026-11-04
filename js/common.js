@@ -11,7 +11,7 @@
   // Signed in to the app? The app lives on the same origin (louistucker31.github.io/app.workspace/)
   // and keeps its Supabase sign-in in localStorage under 'workspaceAuth', removed on sign out.
   // Signed in: hide "Log in" (CSS, so it never flashes) and turn every "Create free account"
-  // into "Open Workspace". If the address changes to another domain this can't see it, and the
+  // into "Open Cronelo". If the address changes to another domain this can't see it, and the
   // buttons simply stay as for someone signed out.
   let signedIn = false;
   try {
@@ -27,7 +27,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     if (signedIn) document.querySelectorAll('[data-app="signup"]').forEach(a => {
-      a.textContent = 'Open Workspace';
+      a.textContent = 'Open Cronelo';
       a.href = a.href.replace(/#signup$/, '');
     });
 

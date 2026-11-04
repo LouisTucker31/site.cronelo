@@ -8,7 +8,7 @@
    re-wrap and push the page about when Inter arrives */
 @font-face{font-family:"Inter fallback";src:local("Arial");ascent-override:90.2%;descent-override:22.48%;line-gap-override:0%;size-adjust:107.4%}
 
-/* Tokens, sampled from the Workspace app. Breakpoints are 640px (phones) and 1024px (tablets);
+/* Tokens, sampled from the Cronelo app. Breakpoints are 640px (phones) and 1024px (tablets);
    media queries can't read custom properties, so those two numbers are repeated below. */
 :root{
   --canvas:#f6f7f9; --surface:#ffffff; --sunken:#eff0f4; --line:#e6e8ec; --line-strong:#d9dce1;
