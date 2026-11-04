@@ -88,7 +88,7 @@ two match.
 
 ## Icons
 
-Lucide (lucide.dev, ISC License, Copyright (c) Lucide Contributors), the same set and version
-as the app (lucide-static 1.68.0). Each is pasted into the page as an inline SVG, so nothing
+Lucide (lucide.dev, ISC License, Copyright (c) Lucide Contributors), the same set as the app
+(shapes from lucide-static 1.68.0). Each is pasted into the page as an inline SVG, so nothing
 loads from another site. To add one, copy its shapes from the icon's SVG at lucide.dev rather
 than drawing a new one.
