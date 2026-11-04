@@ -66,7 +66,7 @@ Mozilla HTTP Observatory.
 
 - Add the site's address as `url` and a `logo` to the Organization in the structured data at the
   top of `index.html`, alongside canonical tags, Open Graph tags, `sitemap.xml` and `robots.txt`.
-- Change the links to the app (`https://louistucker31.github.io/app.workspace/`) to its new
+- Change the links to the app (`https://louistucker31.github.io/app.cronelo/`) to its new
   address once it has one.
 - Have the privacy and terms pages checked. The privacy page names GitHub Pages as the host,
   so update it if the site moves.
