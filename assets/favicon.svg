@@ -1,1 +1,5 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='#0e0f13'/><text x='16' y='22.5' font-family='Arial,sans-serif' font-weight='700' font-size='17' fill='white' text-anchor='middle'>W</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Workspace: a white W on the same dark tile as the logo in the app's rail -->
+  <rect width="32" height="32" rx="7" fill="#121417"/>
+  <path d="M6.5 9.5l4.2 13 5.3-10.2 5.3 10.2 4.2-13" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
