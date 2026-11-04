@@ -8,12 +8,29 @@
   // Then the choice simply isn't remembered, and the page follows the system theme.
   try { const saved = localStorage.getItem('ws-site-theme'); if (saved) root.dataset.theme = saved; } catch (e) { /* not remembered: see above */ }
 
+  // Signed in to the app? The app lives on the same origin (louistucker31.github.io/app.workspace/)
+  // and keeps its Supabase sign-in in localStorage under 'workspaceAuth', removed on sign out.
+  // Signed in: hide "Log in" (CSS, so it never flashes) and turn every "Create free account"
+  // into "Open Workspace". If the address changes to another domain this can't see it, and the
+  // buttons simply stay as for someone signed out.
+  let signedIn = false;
+  try {
+    const auth = JSON.parse(localStorage.getItem('workspaceAuth') || 'null');
+    signedIn = !!(auth && (auth.refresh_token || auth.user));
+  } catch (e) { /* storage blocked or unreadable: treat as signed out */ }
+  if (signedIn) root.classList.add('signed-in');
+
   // Never show the site inside another site's frame, where it could be overlaid to trick
   // clicks. The frame-ancestors header does this properly; this covers hosts that can't
   // send headers (see README.md).
   if (window.top !== window.self) root.classList.add('framed');
 
   document.addEventListener('DOMContentLoaded', () => {
+    if (signedIn) document.querySelectorAll('[data-app="signup"]').forEach(a => {
+      a.textContent = 'Open Workspace';
+      a.href = a.href.replace(/#signup$/, '');
+    });
+
     const themeBtn = document.getElementById('theme-btn');
     const syncBtn = () => themeBtn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
     syncBtn();

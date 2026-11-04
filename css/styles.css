@@ -305,3 +305,4 @@ footer a[aria-current="page"]{color:var(--ink);font-weight:600}
 /* Tooltips, as in the app (js/common.js): dark on the light theme, light on the dark one */
 .tip{position:fixed;z-index:60;max-width:300px;padding:6px 10px;border-radius:6px;background:var(--ink);color:var(--surface);font:500 12.5px/1.4 var(--sans);box-shadow:var(--shadow-tip)}
 .tip[hidden]{display:none}
+.signed-in [data-app="signin"]{display:none}
