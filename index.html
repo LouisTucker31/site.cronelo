@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Only the site's own files may load. frame-ancestors can't be set in a meta tag; see README.md. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Project planner with a timeline and clash alerts | Workspace</title>
+<meta name="description" content="Workspace puts every task on one timeline, then shows the same plan as a list, a calendar, a board and a team workload. Free while in early access.">
+<meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121417" media="(prefers-color-scheme: dark)">
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/styles.css">
+<script src="js/common.js"></script>
+<!-- Structured data for search engines: what Workspace is, who makes it, and the FAQ, which
+     must match the questions and answers on the page word for word. Add "url" and "logo" to
+     the organisation once the site has its final address (see README.md). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "#organization",
+      "name": "Workspace",
+      "email": "louistucker@live.co.uk",
+      "founder": { "@type": "Person", "name": "Louis Tucker" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Workspace",
+      "description": "Workspace puts every task on one timeline, then shows the same plan as a list, a calendar, a board and a team workload.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web browser",
+      "url": "https://louistucker31.github.io/workspace/",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+      "publisher": { "@id": "#organization" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Workspace really free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Everything in the app today is free while Workspace is in early access. A Premium plan with extra features may come later, and the features you already use will stay free." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to install anything?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Workspace runs in your web browser on a computer or phone. Sign in and your projects are there." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I plan work for a team?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, as the person who runs the plan. Add your team in the project settings, put each of them on tasks, and use the Workload view to see who is booked on two things at the same time. They don’t need an account. For now, only you can see and edit your projects." }
+        },
+        {
+          "@type": "Question",
+          "name": "How detailed can a timeline get?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Zoom from hours to years. Plan a launch across several months, or an event minute by minute, using the same tool." }
+        },
+        {
+          "@type": "Question",
+          "name": "What will Premium include?",
+          "acceptedAnswer": { "@type": "Answer", "text": "That’s still being decided, and early members get a say. If Workspace is missing something you need, <a href=\"mailto:louistucker@live.co.uk?subject=Workspace%20Premium%20idea\">email me your idea</a>." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="page-width">
+    <a class="brand" href="#top" aria-label="Workspace home">
+      <span class="logo" aria-hidden="true">W</span>
+      <span>Workspace</span>
+    </a>
+    <nav class="nav" aria-label="Page sections">
+      <a href="#views">Views</a>
+      <a href="#demo">Demo</a>
+      <a href="#who">Who it’s for</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="topbar-actions">
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="Switch to dark mode">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a class="btn btn-ghost" href="https://louistucker31.github.io/workspace/">Log in</a>
+      <a class="btn btn-primary" href="https://louistucker31.github.io/workspace/">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Create free account
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<div class="hero" id="top">
+  <div class="page-width">
+    <h1>Plan the whole project. Spot the clashes before they happen.</h1>
+    <p class="hero-sub">Workspace puts every task on one timeline, then shows the same plan as a list, a calendar, a board and a team workload. Change it in one place and every view keeps up.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary btn-lg" href="https://louistucker31.github.io/workspace/">Create free account</a>
+      <a class="btn btn-ghost btn-lg" href="#demo">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+        Watch the demo
+      </a>
+    </div>
+    <p class="hero-note">Free while in early access. Works in your browser, nothing to install.</p>
+
+    <div class="gantt-frame">
+      <div class="gantt-bar">
+        <span class="crumb-path">Workspace /</span><strong>Website Launch</strong>
+        <span class="right">
+          <span class="avs" aria-hidden="true"><span class="av sam">S</span><span class="av priya">P</span><span class="av alex">A</span></span>
+        </span>
+      </div>
+      <div class="gantt-scroll">
+        <div class="gantt" id="timeline" role="group" aria-label="Website Launch timeline">
+          <div class="g-names" id="timeline-names"><div class="g-head">TASK</div><div class="g-spacer"></div></div>
+          <div class="g-chart" id="timeline-chart">
+            <div class="g-months" id="timeline-months" aria-hidden="true"></div>
+            <div class="g-weeks" id="timeline-cols" aria-hidden="true"></div>
+            <div class="g-grid" id="timeline-grid" aria-hidden="true"></div>
+            <div class="g-rows" id="timeline-rows"><div class="g-spacer"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="gantt-foot">
+        <span><b>1</b> milestone</span><span><b id="task-count">7</b> tasks</span><span><b>3</b> people</span>
+        <span class="hint">Click any bar to see the details</span>
+        <span class="scale-switch" role="group" aria-label="Timeline scale"><button type="button" aria-label="Hours" aria-pressed="false" data-scale="H">H</button><button type="button" aria-label="Days" aria-pressed="false" data-scale="D">D</button><button class="on" type="button" aria-label="Weeks" aria-pressed="true" data-scale="W">W</button><button type="button" aria-label="Months" aria-pressed="false" data-scale="M">M</button><button type="button" aria-label="Quarters" aria-pressed="false" data-scale="Q">Q</button><button type="button" aria-label="Years" aria-pressed="false" data-scale="Y">Y</button></span>
+      </div>
+    </div>
+    <div class="task-pop" id="task-pop" role="dialog" aria-modal="false" aria-labelledby="task-pop-title" hidden></div>
+  </div>
+</div>
+
+<section class="band" id="views">
+  <div class="page-width">
+    <div class="sec-head">
+      <h2>One plan, five ways to look at it</h2>
+      <p>Each view reads from the same project, so you never copy work between tools. Pick whichever answers the question in front of you.</p>
+    </div>
+    <div class="views">
+      <div class="view-tabs" role="tablist" aria-label="Workspace views">
+        <button class="view-tab" role="tab" id="tab-timeline" aria-controls="panel-view" aria-selected="true" data-view="timeline" data-tip="Lay out tasks and milestones over time. Zoom from hours for an event run sheet up to years for a long programme.">
+          <span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4v16h16"/><path d="M8 8h6M10 12h7M8 16h5"/></svg></span>
+          <span class="t" data-label="Timeline">Timeline</span>
+        </button>
+        <button class="view-tab" role="tab" id="tab-list" aria-controls="panel-view" aria-selected="false" tabindex="-1" data-view="list" data-tip="Every task in a table with dates, progress and people. Filter by type, status or person and edit in place.">
+          <span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r=".5" fill="currentColor"/><circle cx="4.5" cy="12" r=".5" fill="currentColor"/><circle cx="4.5" cy="18" r=".5" fill="currentColor"/></svg></span>
+          <span class="t" data-label="List">List</span>
+        </button>
+        <button class="view-tab" role="tab" id="tab-calendar" aria-controls="panel-view" aria-selected="false" tabindex="-1" data-view="calendar" data-tip="See the month at a glance, with each task running across the days it covers.">
+          <span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>
+          <span class="t" data-label="Calendar">Calendar</span>
+        </button>
+        <button class="view-tab" role="tab" id="tab-board" aria-controls="panel-view" aria-selected="false" tabindex="-1" data-view="board" data-tip="Group cards by status, phase, person or day, then drag them as work moves on.">
+          <span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M9.5 3.5v17M15 3.5v10"/></svg></span>
+          <span class="t" data-label="Board">Board</span>
+        </button>
+        <button class="view-tab" role="tab" id="tab-workload" aria-controls="panel-view" aria-selected="false" tabindex="-1" data-view="workload" data-tip="A row for each person. When someone is booked on two things at once, Workload flags it so you can rebalance.">
+          <span class="ico"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.8c1.7.8 2.7 2.5 3 5.2"/></svg></span>
+          <span class="t" data-label="Workload">Workload</span>
+        </button>
+      </div>
+      <div>
+        <figure class="shot" role="tabpanel" tabindex="0" id="panel-view" aria-labelledby="tab-timeline">
+          <img id="view-img" src="assets/view-timeline.webp" loading="lazy" alt="Timeline view of a website launch project with ten coloured task bars and a Go live milestone, running from late October into January" width="1920" height="988">
+          <figcaption class="sr-only" id="view-cap">Lay out tasks and milestones over time. Zoom from hours for an event run sheet up to years for a long programme.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="page-width">
+    <div class="sec-head">
+      <h2>Watch a project come together</h2>
+      <p>Just over a minute in the app: progress updates, a new task, the calendar, cards moving across the board and a workload clash being fixed.</p>
+    </div>
+    <div class="video-frame">
+      <video id="demo-video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback poster="assets/demo-poster.webp" aria-label="Demo of Workspace: editing a website launch project across all five views"></video>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="who">
+  <div class="page-width">
+    <div class="sec-head">
+      <h2>Built for people who plan for a living</h2>
+      <p>Workspace is light enough for one person, and clear enough to plan a whole team’s work.</p>
+    </div>
+    <div class="audience">
+      <table class="audience-table" role="table">
+        <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">WHO</th><th scope="col" role="columnheader">WHAT THEY PLAN</th><th scope="col" role="columnheader">BEST VIEW</th></tr></thead>
+        <tbody role="rowgroup">
+          <tr role="row">
+            <td role="cell"><span class="who" tabindex="0" aria-describedby="who-freelancers"><span class="sq tone-teal"></span>Freelancers and agencies</span><span class="sr-only" id="who-freelancers">Web designers, developers, consultants and the studios they work in</span></td>
+            <td role="cell" class="what" data-label="What they plan">Each client in its own project, from discovery to launch, with every deadline in one place.</td>
+            <td role="cell" class="view" data-label="Best view">Timeline, by week</td>
+          </tr>
+          <tr role="row">
+            <td role="cell"><span class="who" tabindex="0" aria-describedby="who-events"><span class="sq tone-gold"></span>Event planners</span><span class="sr-only" id="who-events">Weddings, conferences, festivals and anything with a run sheet</span></td>
+            <td role="cell" class="what" data-label="What they plan">Run sheets down to the minute. The hour scale shows exactly what happens when, and who’s on it.</td>
+            <td role="cell" class="view" data-label="Best view">Timeline, by hour</td>
+          </tr>
+          <tr role="row">
+            <td role="cell"><span class="who" tabindex="0" aria-describedby="who-teams"><span class="sq tone-purple"></span>Small teams</span><span class="sr-only" id="who-teams">One person runs the plan, with each team member on their own tasks</span></td>
+            <td role="cell" class="what" data-label="What they plan">One plan with everyone on it, and Workload flagging anyone booked on two things at once.</td>
+            <td role="cell" class="view" data-label="Best view">Board and Workload</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="page-width">
+    <div class="sec-head">
+      <h2>Free while in early access</h2>
+      <p>Every feature in the app is free to use. A Premium plan with extra features may follow, and the features you use today will stay free.</p>
+    </div>
+    <div class="plans">
+      <div class="plan-card">
+        <div class="kind"><span class="sq tone-accent"></span>PLAN</div>
+        <h3>Early access</h3>
+        <div class="big">Free</div>
+        <dl>
+          <dt>Includes</dt><dd>Every feature in the app today</dd>
+          <dt>Views</dt><dd>Timeline, list, calendar, board and workload</dd>
+          <dt>Works on</dt><dd>Desktop and mobile browsers</dd>
+          <dt>Account</dt><dd>Sign up with your email address</dd>
+        </dl>
+        <div class="plan-foot">
+          <a class="btn btn-ghost" href="#faq">Read the FAQ</a>
+          <a class="btn btn-primary" href="https://louistucker31.github.io/workspace/">Create free account</a>
+        </div>
+      </div>
+      <div class="plan-card soon">
+        <div class="kind"><span class="sq tone-faint"></span>PLAN</div>
+        <h3>Premium</h3>
+        <div class="big">Coming soon</div>
+        <dl>
+          <dt>Includes</dt><dd>Everything in Early access</dd>
+          <dt>Extras</dt><dd>Being decided with early members</dd>
+          <dt>Price</dt><dd>To be announced</dd>
+          <dt>Your plan</dt><dd>Today’s features stay free</dd>
+        </dl>
+        <div class="plan-foot">
+          <button class="btn" type="button" disabled>Coming soon</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="about">
+  <div class="page-width maker">
+    <div>
+      <div class="sec-head compact"><h2>Made by someone who needed it</h2></div>
+      <p>I built Workspace to plan my own work: client websites that run for weeks, and detailed events that run to the minute. The tools I tried were either too simple to show who was doing what, or so heavy they needed a training course.</p>
+      <p>Workspace sits in between. It’s quick to set up and shows the whole plan at once. When something doesn’t add up, such as one person booked twice, it tells you. It’s free while I shape it, and <a href="mailto:louistucker@live.co.uk?subject=Workspace%20feedback">your feedback</a> decides what comes next.</p>
+      <a class="sig" href="mailto:louistucker@live.co.uk?subject=Workspace" aria-label="Email Louis Tucker, maker of Workspace">
+        <span class="av" aria-hidden="true">L</span><span><strong>Louis Tucker</strong><br><span class="role">Maker of Workspace</span></span>
+        <span class="person-card" aria-hidden="true">
+          <span class="person-head"><span class="av">L</span><span><strong>Louis Tucker</strong><span class="role">Maker of Workspace</span></span></span>
+          <span class="person-row"><span>Plans</span><span>Client websites and live events</span></span>
+          <span class="person-row"><span>Email</span><span>louistucker@live.co.uk</span></span>
+          <span class="person-foot">Click to send an email</span>
+        </span>
+      </a>
+    </div>
+    <div class="notes">
+      <h3>Your projects, your data</h3>
+      <ul>
+        <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Projects save to your account and sync, so you can pick up on any device.</span></li>
+        <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>Your data is never sold or shared with advertisers.</span></li>
+        <li><span class="check" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span>No card details are needed to use Workspace.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="page-width">
+    <div class="sec-head"><h2>Common questions about Workspace</h2></div>
+    <div class="faq">
+      <details>
+        <summary>Is Workspace really free?</summary>
+        <p>Yes. Everything in the app today is free while Workspace is in early access. A Premium plan with extra features may come later, and the features you already use will stay free.</p>
+      </details>
+      <details>
+        <summary>Do I need to install anything?</summary>
+        <p>No. Workspace runs in your web browser on a computer or phone. Sign in and your projects are there.</p>
+      </details>
+      <details>
+        <summary>Can I plan work for a team?</summary>
+        <p>Yes, as the person who runs the plan. Add your team in the project settings, put each of them on tasks, and use the Workload view to see who is booked on two things at the same time. They don’t need an account. For now, only you can see and edit your projects.</p>
+      </details>
+      <details>
+        <summary>How detailed can a timeline get?</summary>
+        <p>Zoom from hours to years. Plan a launch across several months, or an event minute by minute, using the same tool.</p>
+      </details>
+      <details>
+        <summary>What will Premium include?</summary>
+        <p>That’s still being decided, and early members get a say. If Workspace is missing something you need, <a href="mailto:louistucker@live.co.uk?subject=Workspace%20Premium%20idea">email me your idea</a>.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="page-width">
+    <a class="brand" href="#top"><span class="logo" aria-hidden="true">W</span><span>Workspace</span></a>
+    <nav aria-label="Footer">
+      <a href="pages/privacy.html">Privacy</a>
+      <a href="pages/terms.html">Terms</a>
+      <a href="mailto:louistucker@live.co.uk?subject=Workspace">louistucker@live.co.uk</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

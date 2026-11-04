@@ -1,0 +1,307 @@
+/* Fonts: the same Inter and JetBrains Mono files as the app, hosted with the site. Both are
+   variable fonts, so one file covers every weight. JetBrains Mono only appears where the app
+   uses it: dates and numbers in the timeline. */
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 700;font-display:swap;src:url("../assets/fonts/inter-latin-ext.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 700;font-display:swap;src:url("../assets/fonts/inter-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400 700;font-display:swap;src:url("../assets/fonts/jetbrains-mono-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+/* While Inter loads, text shows in Arial resized to take up the same space, so headings don't
+   re-wrap and push the page about when Inter arrives */
+@font-face{font-family:"Inter fallback";src:local("Arial");ascent-override:90.2%;descent-override:22.48%;line-gap-override:0%;size-adjust:107.4%}
+
+/* Tokens, sampled from the Workspace app. Breakpoints are 640px (phones) and 1024px (tablets);
+   media queries can't read custom properties, so those two numbers are repeated below. */
+:root{
+  --canvas:#f6f7f9; --surface:#ffffff; --sunken:#eff0f4; --line:#e6e8ec; --line-strong:#d9dce1;
+  --ink:#0e0f13; --ink-2:#3a3d44; --muted:#6b7078; --faint:#9da0a7;
+  --primary:#0e0f13; --on-primary:#ffffff; --on-colour:#ffffff;
+  --accent:#4a8ca8; --weekend:#eef1f6;
+  --t-blue:#4a8ca8; --t-teal:#2f9585; --t-green:#4f9a3a; --t-gold:#b8860b;
+  --t-orange:#dd702d; --t-red:#d34249; --t-purple:#8658df;
+  --p-sam:#e1ad3d; --p-priya:#d15e89; --p-alex:#ea8338;
+  --ok:#38a06f; --warn:#cb4e54; --milestone:#d28d40;
+  --shadow-pop:0 12px 32px rgba(17,20,28,.12), 0 2px 6px rgba(17,20,28,.06);
+  --shadow-frame:0 24px 60px -24px rgba(17,20,28,.28);
+  --shadow-tip:0 4px 12px rgba(20,30,40,.18);
+  --sans:"Inter", "Inter fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r-s:6px; --r-m:8px; --r-l:12px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --canvas:#121417; --surface:#1a1d21; --sunken:#16191c; --line:#2a2e34; --line-strong:#353a41;
+    --ink:#eceef1; --ink-2:#c8ccd2; --muted:#9aa0a6; --faint:#6c727a;
+    --primary:#eceef1; --on-primary:#121417; --weekend:#171a1e;
+    --shadow-pop:0 12px 32px rgba(0,0,0,.5); --shadow-frame:0 24px 60px -24px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --canvas:#121417; --surface:#1a1d21; --sunken:#16191c; --line:#2a2e34; --line-strong:#353a41;
+  --ink:#eceef1; --ink-2:#c8ccd2; --muted:#9aa0a6; --faint:#6c727a;
+  --primary:#eceef1; --on-primary:#121417; --weekend:#171a1e;
+  --shadow-pop:0 12px 32px rgba(0,0,0,.5); --shadow-frame:0 24px 60px -24px rgba(0,0,0,.7);
+  color-scheme:dark;
+}
+
+/* Base */
+.framed body{visibility:hidden}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--topbar-h,60px) + 32px)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--canvas);color:var(--ink);font:400 17px/1.55 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.page-width{max-width:1200px;margin:0 auto;padding:0 32px}
+@media (max-width:640px){.page-width{padding:0 16px}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.skip{position:absolute;left:16px;top:-48px;background:var(--primary);color:var(--on-primary);padding:8px 14px;border-radius:var(--r-s);z-index:100;text-decoration:none}
+.skip:focus{top:12px}
+
+/* Controls shared with the app's look */
+.btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--r-m);font:600 15px/1 var(--sans);text-decoration:none;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:background-color .15s, border-color .15s}
+.btn svg{flex:none}
+.btn-primary{background:var(--primary);color:var(--on-primary)}
+.btn-primary:hover{background:color-mix(in srgb,var(--primary) 86%,var(--accent))}
+.btn-ghost{background:var(--surface);color:var(--ink);border-color:var(--line-strong)}
+.btn-ghost:hover{border-color:var(--faint)}
+.btn-lg{height:48px;padding:0 20px;font-size:16px}
+.av{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;color:var(--on-colour);font:700 10px/1 var(--sans);flex:none}
+.av.sam{background:var(--p-sam)} .av.priya{background:var(--p-priya)} .av.alex{background:var(--p-alex)}
+.sq{width:10px;height:10px;border-radius:3px;flex:none;display:inline-block;background:var(--tone)}
+/* Task colours. Squares, dots and bars all paint with --tone. */
+.tone-blue{--tone:var(--t-blue)} .tone-teal{--tone:var(--t-teal)} .tone-green{--tone:var(--t-green)}
+.tone-gold{--tone:var(--t-gold)} .tone-orange{--tone:var(--t-orange)} .tone-red{--tone:var(--t-red)}
+.tone-purple{--tone:var(--t-purple)} .tone-milestone{--tone:var(--milestone)}
+.tone-accent{--tone:var(--accent)} .tone-faint{--tone:var(--faint)}
+
+/* Top bar, mirroring the app header */
+.topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.topbar .page-width{display:flex;align-items:center;gap:20px;height:60px;max-width:1360px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 16px/1 var(--sans);color:var(--ink)}
+.logo{display:grid;place-items:center;width:28px;height:28px;border-radius:7px;background:var(--primary);color:var(--on-primary);font:700 15px/1 var(--sans)}
+.nav{display:flex;gap:4px;margin-left:12px}
+.nav a{padding:8px 10px;border-radius:var(--r-s);text-decoration:none;font:500 14px/1 var(--sans);color:var(--muted)}
+.nav a:hover{color:var(--ink);background:var(--sunken)}
+.topbar-actions{margin-left:auto;display:flex;align-items:center;gap:8px}
+.topbar .btn{height:36px;font-size:14px;padding:0 14px}
+.icon-btn{display:grid;place-items:center;width:36px;height:36px;border-radius:var(--r-m);border:1px solid var(--line-strong);background:var(--surface);color:var(--ink-2);cursor:pointer}
+.icon-btn:hover{border-color:var(--faint)}
+/* Tablets and phones: the section links move to their own scrollable row under the logo */
+@media (max-width:1024px){.topbar .page-width{flex-wrap:wrap;height:auto;row-gap:4px;padding-top:12px;padding-bottom:6px}.nav{order:3;flex:0 0 100%;margin-left:-10px;overflow-x:auto;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}.nav a{flex:none}}
+@media (max-width:640px){.topbar .btn-ghost{display:none}.topbar .page-width{column-gap:10px}}
+
+/* Hero */
+.hero{padding:72px 0 40px}
+.hero .page-width{position:relative}
+.hero h1{margin:0;max-width:16ch;font:650 clamp(40px,6.2vw,76px)/1.02 var(--sans);letter-spacing:-.035em;text-wrap:balance}
+.hero-sub{margin:22px 0 0;max-width:56ch;font-size:clamp(17px,1.6vw,20px);line-height:1.5;color:var(--ink-2)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-note{margin:14px 0 0;font-size:14px;color:var(--muted)}
+
+/* Live timeline: the page's one bold element, built by js/main.js */
+.gantt-frame{margin-top:56px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);box-shadow:var(--shadow-frame);overflow:hidden}
+.gantt-bar{display:flex;align-items:center;gap:10px;height:48px;padding:0 16px;border-bottom:1px solid var(--line);font-size:14px}
+.gantt-bar .crumb-path{color:var(--muted)} .gantt-bar strong{font-weight:600;color:var(--ink)}
+.gantt-bar .right{margin-left:auto;display:flex;align-items:center;gap:6px}
+.avs{display:flex}.avs .av{width:22px;height:22px;border:2px solid var(--surface);margin-left:-5px}
+.scale-switch{display:flex;border:1px solid var(--line-strong);border-radius:var(--r-s);overflow:hidden;font:500 11px/1 var(--mono)}
+.scale-switch button{padding:6px 7px;border:0;background:none;color:var(--muted);font:inherit;cursor:pointer} .scale-switch button:hover{background:var(--sunken);color:var(--ink)} .scale-switch button:focus-visible{outline-offset:-2px} .scale-switch .on,.scale-switch .on:hover{background:var(--primary);color:var(--on-primary)}
+.gantt-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+/* The script fills the timeline in, so its height is reserved up front (header, spacer and the
+   eight rows in js/main.js) to stop the page shifting as it draws. Update it if rows change. */
+.gantt{--name:220px;--row:40px;position:relative;display:grid;grid-template-columns:var(--name) var(--chart,minmax(0,1fr));min-height:calc(56px + 32px + 8 * var(--row))}
+.g-names{position:sticky;left:0;z-index:3;background:var(--canvas);border-right:1px solid var(--line)}
+.g-head{height:56px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 14px;font:600 11px/1 var(--sans);letter-spacing:.04em;color:var(--muted)}
+.g-name{height:var(--row);display:flex;align-items:center;gap:9px;padding:0 14px;font:500 14px/1 var(--sans);white-space:nowrap;border-bottom:1px solid var(--line);overflow:hidden}
+.g-name .dot{width:7px;height:7px;border-radius:50%;flex:none;background:var(--tone)}
+.g-name .diamond{width:8px;height:8px;flex:none;transform:rotate(45deg);border-radius:1px;background:var(--tone)}
+.g-name .pct{margin-left:auto;font:400 11px/1 var(--mono);color:var(--muted)}
+.g-chart{position:relative;min-width:0}
+.g-months,.g-weeks{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));font-family:var(--mono)}
+.g-months{height:24px;font:700 11px/24px var(--mono);letter-spacing:.06em;color:var(--ink-2)}
+.g-months span{padding-left:8px;white-space:nowrap;overflow:visible}
+.g-weeks{height:32px;border-bottom:1px solid var(--line);font:400 12px/32px var(--mono);color:var(--muted);text-align:center}
+.g-weeks span{border-left:1px solid var(--line);white-space:nowrap;overflow:hidden}
+.g-weeks .now{color:var(--on-colour)}
+.g-weeks .now i{font-style:normal;background:var(--accent);border-radius:999px;padding:3px 8px}
+.g-grid{position:absolute;inset:56px 0 0 0;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));pointer-events:none}
+.g-grid span{border-left:1px solid var(--line)}
+.gantt[data-scale="W"] .g-grid span{background:linear-gradient(90deg,transparent 71.4%,var(--weekend) 71.4%)}
+.g-grid span.off{background:var(--weekend)}
+.g-rows{position:relative}
+.g-spacer{height:32px;border-bottom:1px solid var(--line)}
+.g-row{position:relative;height:var(--row);border-bottom:1px solid var(--line)}
+.g-today{position:absolute;top:56px;bottom:0;width:2px;margin-left:-1px;background:var(--accent);z-index:2}
+.g-today b{position:absolute;top:7px;left:50%;transform:translateX(-50%);font:500 11px/1 var(--sans);color:var(--accent);background:var(--surface);border:1.5px solid var(--accent);border-radius:999px;padding:4px 8px;white-space:nowrap}
+/* A bar's colour doubles as its text colour, so the selected ring (currentColor) matches it */
+.bar{position:absolute;top:8px;height:24px;border:0;border-radius:6px;padding:0 4px 0 9px;display:flex;align-items:center;gap:6px;background:var(--tone);color:var(--tone);font:600 12.5px/1 var(--sans);cursor:pointer;overflow:hidden;white-space:nowrap;text-align:left;transform-origin:left center}
+.bar .lbl{position:relative;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0;color:var(--on-colour)}
+.bar.tight{padding:0}.bar.tight .lbl,.bar.tight .av{display:none}
+.bar .done{position:absolute;inset:0 auto 0 0;background:rgba(0,0,0,.16);pointer-events:none}
+.bar .av{width:18px;height:18px;font-size:9px;border:1.5px solid rgba(255,255,255,.9);position:relative}
+.bar[aria-expanded="true"]{box-shadow:0 0 0 2px var(--surface),0 0 0 4px currentColor}
+.ms{position:absolute;top:13px;width:14px;height:14px;margin-left:-7px;transform:rotate(45deg);background:var(--milestone);border:0;border-radius:2px;cursor:pointer;padding:0}
+.ms-lbl{position:absolute;top:12px;font:500 12.5px/16px var(--sans);color:var(--ink-2);white-space:nowrap;margin-left:14px}
+.clash{position:absolute;top:calc(32px + var(--row) + 4px);height:calc(var(--row) * 2 - 8px);border-radius:6px;background:repeating-linear-gradient(135deg,color-mix(in srgb,var(--warn) 18%,transparent) 0 5px,transparent 5px 10px);outline:1px dashed color-mix(in srgb,var(--warn) 60%,transparent);pointer-events:none}
+@media (prefers-reduced-motion: no-preference){
+  .gantt.is-live .bar{animation:grow .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 90ms + 200ms)}
+  .gantt.is-live .ms,.gantt.is-live .ms-lbl{animation:fadein .4s ease-out both;animation-delay:calc(var(--i) * 90ms + 300ms)}
+  .gantt.is-live .clash{animation:fadein .5s ease-out 1.3s both}
+  .gantt.static .bar,.gantt.static .ms,.gantt.static .ms-lbl,.gantt.static .clash{animation:none}
+}
+@keyframes grow{from{transform:scaleX(.02);opacity:0}to{transform:none;opacity:1}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.gantt-foot{display:flex;align-items:center;gap:14px;height:38px;padding:0 16px;border-top:1px solid var(--line);font:400 12px/1 var(--sans);color:var(--muted)}
+.gantt-foot b{color:var(--ink);font-weight:600}
+.gantt-foot .hint{margin-left:auto}
+@media (max-width:640px){.gantt{--name:156px}.g-name{font-size:13px;padding:0 10px}.g-name .pct,.scale-switch{display:none}.gantt-foot .hint{display:none}}
+
+/* A task's details, laid out like the app's popup */
+.task-pop{position:absolute;z-index:20;width:280px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);box-shadow:var(--shadow-pop);padding:14px 16px 12px;font-size:14px}
+.task-pop[hidden]{display:none}
+.task-pop .kind{font:500 11px/1 var(--sans);letter-spacing:.04em;color:var(--muted);display:flex;align-items:center;gap:6px}
+.task-pop .title{margin:6px 0 12px;font:600 16px/1.25 var(--sans)}
+.task-pop dl{display:grid;grid-template-columns:72px 1fr;gap:7px 10px;margin:0}
+.task-pop dt{color:var(--muted)} .task-pop dd{margin:0;display:flex;align-items:center;gap:7px}
+.meter{width:72px;height:5px;border-radius:9px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);border-radius:9px}
+.task-pop .close{position:absolute;top:10px;right:10px;width:26px;height:26px;border:0;border-radius:var(--r-s);background:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1}
+.task-pop .close:hover{background:var(--sunken)}
+.task-pop .warn{margin:12px -16px -12px;padding:10px 16px;border-top:1px solid var(--line);font-size:13px;color:var(--warn);display:flex;gap:8px;align-items:center}
+
+/* Sections. --pad-top is a section's top padding: nav links aim at the heading inside, so
+   the jump pulls back by that padding and the heading lands just below the header. */
+section{--pad-top:96px;padding:var(--pad-top) 0 96px}
+section[id]{scroll-margin-top:calc(-1 * var(--pad-top))}
+@media (max-width:640px){section{--pad-top:64px;padding-bottom:64px}.hero{padding:44px 0 24px}}
+/* Sections on a white band, alternating with the grey canvas to set them apart */
+.band{background:var(--surface)}
+.sec-head{max-width:640px;margin-bottom:40px}
+.sec-head.compact{margin-bottom:24px}
+.sec-head h2{margin:0;font:650 clamp(30px,3.6vw,44px)/1.08 var(--sans);letter-spacing:-.028em;text-wrap:balance}
+.sec-head p{margin:14px 0 0;color:var(--ink-2);font-size:18px;max-width:58ch}
+
+/* Views switcher */
+.views{display:grid}
+.view-tabs{position:relative;z-index:1;display:flex;gap:2px;padding:0 14px;margin-bottom:-1px}
+.view-tab{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:8px;padding:12px 18px 13px;border:1px solid transparent;border-bottom:0;border-radius:var(--r-m) var(--r-m) 0 0;cursor:pointer;color:var(--muted);transition:background .15s,color .15s}
+.view-tab .ico{display:grid;place-items:center;transition:color .15s}
+.view-tab .t{display:inline-grid;font:500 15px/1.2 var(--sans)}
+/* Keeps the width of the bold label, so tabs don't shift when one is selected */
+.view-tab .t::after{content:attr(data-label);font-weight:600;height:0;overflow:hidden;visibility:hidden}
+.view-tab[aria-selected="true"] .t{font-weight:600}
+.view-tab:hover{color:var(--ink);background:var(--sunken)}
+.view-tab[aria-selected="true"]{background:var(--surface);border-color:var(--line);color:var(--ink);box-shadow:inset 0 2px 0 var(--accent)}
+.view-tab[aria-selected="true"] .ico{color:var(--accent)}
+.view-tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.shot{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden;box-shadow:var(--shadow-frame)}
+.shot img{width:100%;height:auto;aspect-ratio:1920/988}
+@media (max-width:1024px){
+  .view-tabs{overflow-x:auto;scrollbar-width:none;padding:0 8px}
+  .view-tabs::-webkit-scrollbar{display:none}
+  .view-tab{flex:none;padding:10px 14px 11px}
+}
+
+/* Demo video */
+.video-frame{position:relative;border-radius:var(--r-l);overflow:hidden;border:1px solid var(--line);background:var(--sunken);box-shadow:var(--shadow-frame)}
+.video-frame video{width:100%;height:auto;aspect-ratio:16/9;background:var(--sunken);pointer-events:none}
+
+/* Who it's for: a table styled like the app's List view */
+.audience{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);overflow:hidden}
+.audience-table{width:100%;border-collapse:collapse;font-size:15px}
+.audience-table th{text-align:left;font:600 11px/1 var(--sans);letter-spacing:.05em;color:var(--muted);padding:12px 18px;background:var(--canvas);border-bottom:1px solid var(--line)}
+.audience-table td{padding:18px;border-bottom:1px solid var(--line);vertical-align:top;transition:background .12s}
+.audience-table tr:last-child td{border-bottom:0}
+.audience-table tbody tr:hover td{background:var(--canvas)}
+.audience-table .who{font-weight:600;display:inline-flex;gap:10px;align-items:center;white-space:nowrap;cursor:default}
+.audience-table .what{color:var(--ink-2);max-width:52ch}
+.audience-table .view{color:var(--ink-2);white-space:nowrap}
+@media (max-width:640px){
+  /* The column headings stay for screen readers; each block shows its own small labels instead.
+     The / "" gives the labels empty alt text, so screen readers don't read them twice. */
+  .audience-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+  .audience-table td[data-label]::before{content:attr(data-label);content:attr(data-label) / "";display:block;margin-bottom:2px;font:600 11px/1.4 var(--sans);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+  .audience-table,.audience-table tbody,.audience-table tr,.audience-table td{display:block;width:100%}
+  .audience-table tr{padding:16px 18px;border-bottom:1px solid var(--line)}
+  .audience-table tr:last-child{border-bottom:0}
+  .audience-table td{padding:0;border:0}
+  .audience-table td+td{margin-top:6px}
+}
+
+/* Pricing: Free and Premium side by side, as wide as the video. Premium is greyed out until it launches. */
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+@media (max-width:1024px){.plans{grid-template-columns:minmax(0,1fr)}}
+.plan-card{display:flex;flex-direction:column;padding:22px 24px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);box-shadow:var(--shadow-pop)}
+.plan-card .kind{font:500 12px/1 var(--sans);letter-spacing:.04em;color:var(--muted);display:flex;gap:8px;align-items:center}
+.plan-card h3{margin:10px 0 4px;font:650 30px/1.1 var(--sans);letter-spacing:-.02em}
+.plan-card .big{font:700 clamp(40px,7vw,56px)/1 var(--sans);letter-spacing:-.04em;margin:14px 0 6px}
+.plan-card dl{display:grid;grid-template-columns:110px 1fr;gap:12px 14px;margin:22px 0;font-size:15px}
+.plan-card dt{color:var(--muted)} .plan-card dd{margin:0}
+.plan-foot{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;margin:auto -24px 0;padding:14px 24px;border-top:1px solid var(--line)}
+.plan-foot .btn{height:36px;font-size:14px}
+.plan-card.soon{background:var(--canvas);box-shadow:none;color:var(--muted)}
+.plan-card.soon h3,.plan-card.soon .big,.plan-card.soon dd{color:var(--muted)}
+.plan-card.soon .btn{background:var(--sunken);border-color:var(--line);color:var(--faint);cursor:not-allowed}
+@media (max-width:640px){.plan-card dl{grid-template-columns:90px 1fr}.plan-card{padding-left:18px;padding-right:18px}.plan-foot{margin-left:-18px;margin-right:-18px;padding:14px 18px}}
+
+/* Maker + data */
+.maker{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
+@media (max-width:1024px){.maker{grid-template-columns:1fr;gap:32px}}
+.maker p{margin:0 0 16px;max-width:60ch;color:var(--ink-2)}
+.maker .sig{position:relative;display:flex;width:fit-content;align-items:center;gap:12px;margin-top:24px;font-size:15px;color:var(--ink);text-decoration:none;border-radius:var(--r-m)}
+.maker .sig .av{width:40px;height:40px;font-size:16px;background:var(--p-sam)}
+.maker .sig .role{color:var(--muted)}
+/* Hovering or tabbing to the name shows a profile card, in the style of the timeline's details popup */
+.person-card{position:absolute;left:0;bottom:calc(100% + 10px);z-index:20;display:grid;gap:8px;width:300px;padding:14px 16px 12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);box-shadow:var(--shadow-pop);font-size:14px;line-height:1.4;opacity:0;visibility:hidden;transform:translateY(4px);transition:opacity .15s,transform .15s,visibility 0s .15s}
+/* Bridges the gap to the name, so the card stays open while the pointer moves onto it */
+.person-card::after{content:"";position:absolute;left:0;right:0;top:100%;height:12px}
+.sig:hover .person-card,.sig:focus-visible .person-card{opacity:1;visibility:visible;transform:none;transition:opacity .15s .35s,transform .15s .35s,visibility 0s .35s}
+.sig.dismissed .person-card{opacity:0;visibility:hidden;transition:none}
+.person-head{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.person-head strong,.person-head .role{display:block}
+.person-head .role{font-size:13px}
+.maker .person-card .av{width:32px;height:32px;font-size:13px}
+.person-row{display:grid;grid-template-columns:52px 1fr;gap:10px}
+.person-row span:first-child{color:var(--muted)}
+.person-foot{margin:4px -16px -12px;padding:9px 16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){.person-card{transform:none}}
+.notes{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-l);padding:18px 20px}
+.notes h3{margin:0 0 12px;font:600 15px/1.2 var(--sans)}
+.notes ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.notes li{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:15px;color:var(--ink-2)}
+.check{width:18px;height:18px;border-radius:50%;background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok);display:grid;place-items:center;margin-top:2px}
+
+/* FAQ */
+.faq{max-width:820px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-of-type{border-top:1px solid var(--line)}
+.faq summary{list-style:none;display:flex;align-items:center;gap:12px;padding:20px 4px;cursor:pointer;font:600 17px/1.35 var(--sans)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";margin-left:auto;width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s;flex:none}
+.faq details[open] summary::after{transform:rotate(-135deg) translate(-2px,-2px)}
+.faq details p{margin:0 4px 22px;max-width:64ch;color:var(--ink-2)}
+
+/* Footer */
+/* White with a rule above, framing the page like the header does */
+footer{background:var(--surface);border-top:1px solid var(--line);padding:32px 0;font-size:14px;color:var(--muted)}
+footer .page-width{display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px}
+footer nav{display:flex;gap:18px;margin-left:auto}
+footer a{text-decoration:none} footer a:hover{color:var(--ink)}
+footer a[aria-current="page"]{color:var(--ink);font-weight:600}
+
+/* Privacy and terms pages */
+.legal{max-width:760px;padding-top:64px;padding-bottom:96px}
+.legal h1{margin:0;font:650 clamp(34px,4.4vw,52px)/1.06 var(--sans);letter-spacing:-.03em}
+.legal .updated{margin:12px 0 40px;font-size:14px;color:var(--muted)}
+.legal h2{margin:40px 0 10px;font:600 20px/1.3 var(--sans);letter-spacing:-.01em}
+.legal p,.legal li{color:var(--ink-2)}
+.legal p{margin:0 0 14px}
+.legal ul{margin:0 0 14px;padding-left:22px}
+.legal li{margin-bottom:6px}
+.legal a{color:var(--ink)}
+
+/* Tooltips, as in the app (js/common.js): dark on the light theme, light on the dark one */
+.tip{position:fixed;z-index:60;max-width:300px;padding:6px 10px;border-radius:6px;background:var(--ink);color:var(--surface);font:500 12.5px/1.4 var(--sans);box-shadow:var(--shadow-tip)}
+.tip[hidden]{display:none}

@@ -1,0 +1,13 @@
+# HTTP security headers, for hosts that read a _headers file (Cloudflare Pages, Netlify).
+# GitHub Pages ignores this file and can't set headers at all; see README.md.
+#
+# The Content Security Policy starts in report-only mode: browsers log anything it would
+# block, without blocking it. Once the live site shows no violations, rename the header to
+# Content-Security-Policy to enforce it (README.md, "Turning on the policy").
+/*
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  X-Frame-Options: DENY
