@@ -7,7 +7,8 @@ hosted on Cloudflare Pages from the `main` branch.
 Plain HTML, CSS and JavaScript with no build step: fonts, images and video are all served from
 this folder. The one outside file is Cloudflare Web Analytics, which Cloudflare adds to each page
 itself (automatic setup in the dashboard). It counts visits without cookies; the policy allows
-only its script (`static.cloudflareinsights.com`) and where it reports (`cloudflareinsights.com`).
+only its script (`static.cloudflareinsights.com`) and where it reports (this site's own
+`/cdn-cgi/rum`, and `cloudflareinsights.com`).
 Cloudflare updates that script in place, so it can't have an `integrity` hash.
 
 - `index.html`: the home page
