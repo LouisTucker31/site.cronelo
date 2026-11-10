@@ -8,16 +8,15 @@
   // Then the choice simply isn't remembered, and the page follows the system theme.
   try { const saved = localStorage.getItem('ws-site-theme'); if (saved) root.dataset.theme = saved; } catch (e) { /* not remembered: see above */ }
 
-  // Signed in to the app? The app keeps its Supabase sign-in in localStorage under
-  // 'workspaceAuth', removed on sign out. Signed in: hide "Log in" (CSS, so it never flashes)
-  // and turn every "Create free account" into "Open Cronelo". This only works when the site and
-  // the app share an origin. The app lives at app.cronelo.co.uk, a different origin from
-  // cronelo.co.uk, so this can't see its sign-in and the buttons simply stay as for someone signed out.
+  // Signed in to the app? The app (app.cronelo.co.uk) sets a 'cronelo_signed_in' cookie for
+  // all of cronelo.co.uk while someone is signed in, and removes it on sign out. It holds only
+  // "1", never the sign-in itself. Signed in: hide "Log in" (CSS, so it never flashes) and turn
+  // every "Create free account" into "Open Cronelo". On any other address (a pages.dev preview,
+  // a local copy) there's no cookie, and the buttons stay as for someone signed out.
   let signedIn = false;
   try {
-    const auth = JSON.parse(localStorage.getItem('workspaceAuth') || 'null');
-    signedIn = !!(auth && (auth.refresh_token || auth.user));
-  } catch (e) { /* storage blocked or unreadable: treat as signed out */ }
+    signedIn = /(?:^|;\s*)cronelo_signed_in=1(?:;|$)/.test(document.cookie);
+  } catch (e) { /* cookies blocked: treat as signed out */ }
   if (signedIn) root.classList.add('signed-in');
 
   // Never show the site inside another site's frame, where it could be overlaid to trick
