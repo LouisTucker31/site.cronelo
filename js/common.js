@@ -1,5 +1,15 @@
 // Shared by every page. Loaded in <head>, so the saved theme is set before the page draws.
 (() => {
+  // The site used to live on GitHub Pages (louistucker31.github.io/site.cronelo/), which still
+  // serves a copy from this repo. Send anyone there to the same page on cronelo.co.uk. GitHub
+  // Pages can't redirect on the server, so this does it before the page draws.
+  if (location.hostname === 'louistucker31.github.io') {
+    document.documentElement.style.display = 'none';
+    location.replace('https://cronelo.co.uk' +
+      location.pathname.replace(/^\/site\.cronelo(?=\/|$)/, '') + location.search + location.hash);
+    return;
+  }
+
   /* Theme: remembered per browser, like the app's moon button */
   const root = document.documentElement;
   const prefersDark = matchMedia('(prefers-color-scheme: dark)');
