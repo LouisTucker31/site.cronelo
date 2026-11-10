@@ -89,3 +89,9 @@ Lucide (lucide.dev, ISC License, Copyright (c) Lucide Contributors), the same se
 (shapes from lucide-static 1.68.0). Each is pasted into the page as an inline SVG, so nothing
 loads from another site. To add one, copy its shapes from the icon's SVG at lucide.dev rather
 than drawing a new one.
+
+## Link previews
+
+`assets/og-image.png` (1200×630) is the picture shown when the site is shared on social media,
+chat apps and in ads. It's the home page headline beside the timeline screenshot; remake it when
+either changes, and keep the `og:image` tags in `index.html` pointing at it.
