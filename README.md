@@ -42,10 +42,13 @@ A `<meta>` tag can't set everything. These need real HTTP headers, which are all
 - `X-Content-Type-Options`, `Permissions-Policy` and `X-Frame-Options`
 - `frame-ancestors 'none'` in the policy, which stops other sites showing this one in a frame
 
-Cloudflare Pages and Netlify apply `_headers` automatically (no build command, output
-directory `/`). GitHub Pages can't send custom headers at all. If the site is hosted there,
-those headers are missing, and only the fallback in `js/common.js` stops framing: it hides
-the page when it's inside another site's frame.
+Cloudflare Pages applies `_headers` automatically (no build command, output directory `/`).
+`js/common.js` also hides the page when it's inside another site's frame, as a second line of
+defence.
+
+The site used to be on GitHub Pages (louistucker31.github.io/site.cronelo/). That copy still
+exists, and the redirect at the top of `js/common.js` sends visitors on to cronelo.co.uk. Once
+nobody uses the old address, turn off GitHub Pages for this repo and remove that redirect.
 
 ### The policy
 

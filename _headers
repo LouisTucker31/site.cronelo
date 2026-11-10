@@ -1,5 +1,5 @@
 # HTTP security headers, for hosts that read a _headers file (Cloudflare Pages, Netlify).
-# GitHub Pages ignores this file and can't set headers at all; see README.md.
+# Cloudflare Pages applies this file to every response; see README.md.
 #
 # The Content Security Policy matches the <meta> policy in each page, plus frame-ancestors,
 # which only works as a header. Change both together.
