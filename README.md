@@ -1,7 +1,8 @@
 # Cronelo website
 
 The marketing site for Cronelo. It explains the app and links to it; the app itself lives
-at its own address and is a separate project.
+at https://app.cronelo.co.uk and is a separate project. This site is https://cronelo.co.uk,
+hosted on Cloudflare Pages from the `main` branch.
 
 Plain HTML, CSS and JavaScript with no build step and no third-party files: fonts, images and
 video are all served from this folder.
@@ -64,12 +65,8 @@ Mozilla HTTP Observatory.
 
 ## Before launch
 
-- Add the site's address as `url` and a `logo` to the Organization in the structured data at the
-  top of `index.html`, alongside canonical tags, Open Graph tags, `sitemap.xml` and `robots.txt`.
-- Change the links to the app (`https://louistucker31.github.io/app.cronelo/`) to its new
-  address once it has one.
-- Have the privacy and terms pages checked. The privacy page names GitHub Pages as the host,
-  so update it if the site moves.
+- Have the privacy and terms pages checked.
+- Add an `og:image` (a 1200×630 PNG or JPG) so shared links show a picture.
 
 ## Search
 

@@ -13,19 +13,26 @@
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="canonical" href="https://cronelo.co.uk/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cronelo">
+<meta property="og:url" content="https://cronelo.co.uk/">
+<meta property="og:title" content="Cronelo: project planner with a timeline and clash alerts">
+<meta property="og:description" content="Cronelo puts every task on one timeline, then shows the same plan as a list, a calendar, a board and a team workload. Free while in early access.">
 <link rel="stylesheet" href="css/styles.css">
 <script src="js/common.js"></script>
 <!-- Structured data for search engines: what Cronelo is, who makes it, and the FAQ, which
-     must match the questions and answers on the page word for word. Add "url" and "logo" to
-     the organisation once the site has its final address (see README.md). -->
+     must match the questions and answers on the page word for word. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "#organization",
+      "@id": "https://cronelo.co.uk/#organization",
       "name": "Cronelo",
+      "url": "https://cronelo.co.uk/",
+      "logo": "https://cronelo.co.uk/assets/apple-touch-icon.png",
       "email": "louistucker@live.co.uk",
       "founder": { "@type": "Person", "name": "Louis Tucker" }
     },
@@ -35,9 +42,9 @@
       "description": "Cronelo puts every task on one timeline, then shows the same plan as a list, a calendar, a board and a team workload.",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web browser",
-      "url": "https://louistucker31.github.io/app.cronelo/",
+      "url": "https://app.cronelo.co.uk/",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
-      "publisher": { "@id": "#organization" }
+      "publisher": { "@id": "https://cronelo.co.uk/#organization" }
     },
     {
       "@type": "FAQPage",
@@ -93,8 +100,8 @@
       <button class="icon-btn" id="theme-btn" type="button" aria-label="Switch to dark mode">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
       </button>
-      <a class="btn btn-ghost" data-app="signin" target="cronelo-app" href="https://louistucker31.github.io/app.cronelo/">Log in</a>
-      <a class="btn btn-primary" data-app="signup" target="cronelo-app" href="https://louistucker31.github.io/app.cronelo/#signup">
+      <a class="btn btn-ghost" data-app="signin" target="cronelo-app" href="https://app.cronelo.co.uk/">Log in</a>
+      <a class="btn btn-primary" data-app="signup" target="cronelo-app" href="https://app.cronelo.co.uk/#signup">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
         Create free account
       </a>
@@ -108,7 +115,7 @@
     <h1>Plan the whole project. Spot the clashes before they happen.</h1>
     <p class="hero-sub">Cronelo puts every task on one timeline, then shows the same plan as a list, a calendar, a board and a team workload. Change it in one place and every view keeps up.</p>
     <div class="hero-ctas">
-      <a class="btn btn-primary btn-lg" data-app="signup" target="cronelo-app" href="https://louistucker31.github.io/app.cronelo/#signup">Create free account</a>
+      <a class="btn btn-primary btn-lg" data-app="signup" target="cronelo-app" href="https://app.cronelo.co.uk/#signup">Create free account</a>
       <a class="btn btn-ghost btn-lg" href="#demo">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
         Watch the demo
@@ -245,7 +252,7 @@
         </dl>
         <div class="plan-foot">
           <a class="btn btn-ghost" href="#faq">Read the FAQ</a>
-          <a class="btn btn-primary" data-app="signup" target="cronelo-app" href="https://louistucker31.github.io/app.cronelo/#signup">Create free account</a>
+          <a class="btn btn-primary" data-app="signup" target="cronelo-app" href="https://app.cronelo.co.uk/#signup">Create free account</a>
         </div>
       </div>
       <div class="plan-card soon">

@@ -8,11 +8,11 @@
   // Then the choice simply isn't remembered, and the page follows the system theme.
   try { const saved = localStorage.getItem('ws-site-theme'); if (saved) root.dataset.theme = saved; } catch (e) { /* not remembered: see above */ }
 
-  // Signed in to the app? The app lives on the same origin (louistucker31.github.io/app.cronelo/)
-  // and keeps its Supabase sign-in in localStorage under 'workspaceAuth', removed on sign out.
-  // Signed in: hide "Log in" (CSS, so it never flashes) and turn every "Create free account"
-  // into "Open Cronelo". If the address changes to another domain this can't see it, and the
-  // buttons simply stay as for someone signed out.
+  // Signed in to the app? The app keeps its Supabase sign-in in localStorage under
+  // 'workspaceAuth', removed on sign out. Signed in: hide "Log in" (CSS, so it never flashes)
+  // and turn every "Create free account" into "Open Cronelo". This only works when the site and
+  // the app share an origin. The app lives at app.cronelo.co.uk, a different origin from
+  // cronelo.co.uk, so this can't see its sign-in and the buttons simply stay as for someone signed out.
   let signedIn = false;
   try {
     const auth = JSON.parse(localStorage.getItem('workspaceAuth') || 'null');
