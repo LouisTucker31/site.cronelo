@@ -47,18 +47,12 @@ directory `/`). GitHub Pages can't send custom headers at all. If the site is ho
 those headers are missing, and only the fallback in `js/common.js` stops framing: it hides
 the page when it's inside another site's frame.
 
-### Turning on the policy
+### The policy
 
-In `_headers` the policy starts as `Content-Security-Policy-Report-Only`, so a mistake can't
-break the live site. After the first deploy:
-
-1. Open every page with the browser's console showing, and play the demo video. Look for
-   messages saying the policy would have blocked something.
-2. Fix anything it reports, in the code or the policy.
-3. Rename the header to `Content-Security-Policy` and deploy again.
-
-The `<meta>` policy in each page already enforces everything except `frame-ancestors`, and
-has been tested on every page.
+The Content-Security-Policy header in `_headers` is enforced (since 10 November 2026). It matches
+the `<meta>` policy in each page, plus `frame-ancestors`, which only works as a header. Change
+both together, then open every page with the browser's console showing and play the demo video,
+looking for anything the policy blocked.
 
 After any hosting change, check the live headers with https://securityheaders.com or the
 Mozilla HTTP Observatory.
@@ -66,7 +60,6 @@ Mozilla HTTP Observatory.
 ## Before launch
 
 - Have the privacy and terms pages checked.
-- Add an `og:image` (a 1200×630 PNG or JPG) so shared links show a picture.
 
 ## Search
 
